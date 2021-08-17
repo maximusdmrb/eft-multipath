@@ -1,0 +1,175 @@
+version: teqc  2016Apr1
+
+ SV+-----------|-----------|-----------|-----------|-----------|-----------|+ SV
+ 21|ooooooooooooooooooooooooooooooooooooooooooooooc                         | 21
+R13|NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN|R13
+R22|NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN|R22
+  1|oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo|  1
+ 19|oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo| 19
+ 22|oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo| 22
+ 14|oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo| 14
+  6|oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo|  6
+R 5|NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN|R 5
+ 24|oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo| 24
+R12|NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN|R12
+R21|NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN|R21
+  3|oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo|  3
+ 17|oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo| 17
+R 6|            NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN|R 6
+R23|                         NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN|R23
+  2|                                                                     ooo|  2
+Obs|eeeeeeeeeeeefffffffffffffggggggggggggggggggggggffffffffffffffffffffffggg|Obs
+Clk|                                                                        |Clk
+   +-----------|-----------|-----------|-----------|-----------|-----------|+   
+00:30                                                                      01:30
+2021 Aug  6                                                          2021 Aug  6
+
+*********************
+QC of RINEX  file(s) : C:\Users\maxim\Desktop\EFT\multipath\rinex\21.08.06\ANGR_06.Aug.2021.00.30_06.Aug.2021.01.30_101210.21o
+*********************
+
+4-character ID          : ANGR
+Receiver type           : TRIMBLE BD970 (# = 0) (fw = 2.0)
+Antenna type            : UNKNOWN EXT NONE (# = 0)
+
+Time of start of window : 2021 Aug  6  00:30:00.000
+Time of  end  of window : 2021 Aug  6  01:30:00.000
+Time line window length : 60.00 minute(s), ticked every 10.0 minute(s)
+Observation interval    : 10.0000 seconds
+Total satellites w/ obs : 17
+NAVSTAR GPS SVs w/o OBS :  4   5   7   8   9  10  11  12  13  15  16  18 
+                          20  23  25  26  27  28  29  30  31  32 
+    GLONASS SVs w/o OBS :  1   2   3   4   7   8   9  10  11  14  15  16 
+                          17  18  19  20  24 
+Rx tracking capability  : 12 SVs
+Poss. # of obs epochs   :    361
+Epochs w/ observations  :    361
+Epochs repeated         :      0  (0.00%)
+Complete observations   :   4941
+ Deleted observations   :    532
+Obs w/ SV duplication   :      0  (within non-repeated epochs)
+Moving average MP12     : 0.061646 m
+Moving average MP21     : 0.179484 m
+Points in MP moving avg : 50
+No. of Rx clock offsets : 0
+Total Rx clock drift    :  0.000000 ms
+Rate of Rx clock drift  :  0.000 ms/hr
+Avg time between resets : Inf minute(s)
+Freq no. and timecode   : 2 15188 000003
+Report gap > than       : 10.00 minute(s)
+       but < than       : 90.00 minute(s)
+epochs w/ msec clk slip : 0
+other msec mp events    : 0 (: 0)   {expect ~= 1:50}
+IOD signifying a slip   : >400.0 cm/minute
+IOD slips               :      0
+IOD or MP slips         :      0
+      first epoch    last epoch    hrs   dt  #expt  #have   %   mp1   mp2 o/slps
+SUM 21  8  6 00:30 21  8  6 01:30 1.003  10     -    4941  -   0.06  0.18   4941
+
+
+
+Processing parameters are:
+Receiver tracking capability       : 12 SVs
+Maximum ionospheric rate (L1)      : 400.00 cm/min
+Report data gap greater than       : 10.00 min
+               but less than       : 90.00 min
+Expected rms of MP12 multipath     : 65.00 cm
+Expected rms of MP21 multipath     : 65.00 cm
+Multipath slip sigma threshold     : 4.00 sigma
+% increase in MP rms for C/A | A/S : 100.00 %
+Points in MP moving averages       : 50
+Width of ASCII summary plot        : 72
+Data indicators on summary plot    : yes
+Do ionospheric observable          : yes
+Do ionospheric derivative          : yes
+Do multipath observables           : yes
+Do 1-ms receiver clock slips       : yes
+Tolerance for 1-ms clock slips     : 1.00e-002 ms
+Do receiver LLI slips              : yes
+Do plot file(s)                    : no
+
+Observations start   : 2021 Aug  6 00:30:00.000
+Observations  end    : 2021 Aug  6 01:30:00.000
+Observation interval : 10.0000 second(s)
+
+ SV  #+hor <ele> #+mask <ele> #reprt #compl    L1     L2     P1     P2     C1     C2
+--- ------ ----- ------ ----- ------ ------ ------ ------ ------ ------ ------ ------
+G19*     0  0.00      0  0.00    361    361    361    361      0    361    361      0
+R13*     0  0.00      0  0.00    361    361    361    361    361    361    361    361
+R22*     0  0.00      0  0.00    361    361    361    361    361    361    361    361
+G01*     0  0.00      0  0.00    361    361    361    361      0    361    361    361
+G21*     0  0.00      0  0.00    235    234    235    234      0    234    235      0
+G22*     0  0.00      0  0.00    361    361    361    361      0    361    361      0
+G14*     0  0.00      0  0.00    361    361    361    361      0    361    361    361
+G06*     0  0.00      0  0.00    361    361    361    361      0    361    361    361
+R05*     0  0.00      0  0.00    361    361    361    361    361    361    361    361
+G24*     0  0.00      0  0.00    361    361    361    361      0    361    361    361
+R12*     0  0.00      0  0.00    361    361    361    361    361    361    361    361
+R21*     0  0.00      0  0.00    361    361    361    361    361    361    361    361
+G03*     0  0.00      0  0.00    361    361    361    361      0    361    361    361
+G17*     0  0.00      0  0.00    361    361    361    361      0    361    361    361
+R06*     0  0.00      0  0.00    296      0    296      0    244      0    296      0
+R23*     0  0.00      0  0.00    235      0    235      0    235      0    235      0
+G02*     0  0.00      0  0.00     14     14     14     14      0     14     14      0
+   * = SV with no NAV info (or not being used)
+Obs reported w/ code | phase  :   5473
+Obs deleted (any reason)      :    532
+Obs complete                  :   4941
+
+                                |  G  |  R  |
+% Obs            w/ no L1     :   0.0   0.0
+% Obs            w/ no L2     :   0.0  22.7
+
+% Obs            w/ no P1     : 100.0   2.2
+% Obs            w/ no P2     :   0.0  22.7
+% Obs            w/ no C1     :   0.0   0.0
+% Obs            w/ no C2     :  31.0  22.7
+
+
+No. of Rx clock offsets : 0
+Total Rx clock drift    :  0.000000 ms
+Rate of Rx clock drift  :  0.000000 ms/hr
+
+MP12 RMS summary (per SV):
+
+                                      slips  L1 rx  L2 rx
+ SV    obs   # del <elev> MP12 rms [m]  all    all    all
+G19*   361      0    0.00  0.024397      0      0      0
+G01*   361      0    0.00  0.090169      0      0      0
+G21*   235      1    0.00  0.130666      0      0      0
+G22*   361      0    0.00  0.080671      0      0      0
+G14*   361      0    0.00  0.039975      0      0      0
+G06*   361      0    0.00  0.080722      0      0      0
+G24*   361      0    0.00  0.040189      0      0      0
+G03*   361      0    0.00  0.064998      0      0      0
+G17*   361      0    0.00  0.026326      0      0      0
+G02*    14      0    0.00  0.087090      0      0      0
+   * = SV with no NAV info (or not being used)
+
+mean MP12 rms        :  0.061646 m
+# MP12 obs           :   3136
+# MP12 slips         :      0
+# Rvr L1 slips       :      0
+# Rvr L2 slips       :      0
+
+MP21 RMS summary (per SV):
+
+                                      slips  L1 rx  L2 rx
+ SV    obs   # del <elev> MP21 rms [m]  all    all    all
+G19*   361      0    0.00  0.153518      0      0      0
+G01*   361      0    0.00  0.135452      0      0      0
+G21*   235      1    0.00  0.234065      0      0      0
+G22*   361      0    0.00  0.268934      0      0      0
+G14*   361      0    0.00  0.133041      0      0      0
+G06*   361      0    0.00  0.247126      0      0      0
+G24*   361      0    0.00  0.104025      0      0      0
+G03*   361      0    0.00  0.294197      0      0      0
+G17*   361      0    0.00  0.067152      0      0      0
+G02*    14      0    0.00  0.103266      0      0      0
+   * = SV with no NAV info (or not being used)
+
+mean MP21 rms        :  0.179484 m
+# MP21 obs           :   3136
+# MP21 slips         :      0
+# Rvr L1 slips       :      0
+# Rvr L2 slips       :      0
