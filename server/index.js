@@ -45,6 +45,6 @@ app.post("/post", function (req, res, next) {
   });
 });
 
-app.listen(3000, () => {
+app.listen(80, () => {
   console.log("Сервер запущен");
 });
