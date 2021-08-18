@@ -48,21 +48,22 @@
           ],
           interval: 5000,
         },
-        type12: ["00:30", "12:30"],
-        type24: ["00:30"],
+        type12: { time: ["00:30", "12:30"], interval: 30000 },
+        type24: { time: ["00:30"], interval: 60000 },
       };
       let formMax = new FormData();
       function ddos({ bs, email, date, month, year, type }) {
         formMax.set("_token", "fF4oJ0oTZuerdWn2fV7MRLGCRH0fDTC07Mm7UhY8");
         formMax.set("email", "");
-        formMax.set("rinex[bs]", "636");
+        // formMax.set("rinex[bs]", "636");
         formMax.set("send_to_email", false);
         formMax.set("rinex[timezone]", "0");
         formMax.set("rinex[version]", "2.11");
         formMax.set("rinex[frequency]", "10");
 
-        let index = 0;
-        const timer = setInterval(query, 5000);
+        let indexTime = 0,
+          indexBs = 0;
+        const timer = setInterval(query, typeRinex[`type${type}`].interval);
         query();
         async function query() {
           if (index == typeRinex[`type${type}`].length - 1) {
