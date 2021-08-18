@@ -23,7 +23,7 @@
         padding: 60px;
         justify-content: center;
       }
-      #labelInp {
+      a {
         background: #ed6e22;
         box-shadow: 0 0 20px 0px rgba(#ed6e22, 0.6);
         color: #fff;
@@ -45,6 +45,7 @@
       height="200"
     />
     <a id="labelInp">Указать папку с файлами .YYo</a>
+    <a id="labelChangeName">Заменить название антенны</a>
   </body>
   <script>
     labelInp.onclick = async () => {
@@ -53,7 +54,23 @@
         "C:\\Users\\maxim\\Desktop\\multipath\\local\\20210806"
       );
 
-      await fetch("http://192.168.1.108/post", {
+      await fetch("http://192.168.77.210/post", {
+        method: "post",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          src,
+        }),
+      });
+    };
+    labelChangeName.onclick = async () => {
+      let src = prompt(
+        "Введите полный путь до папки с файлами",
+        "C:\\Users\\smf\\Desktop\\MDNG 3.02"
+      );
+
+      await fetch("http://192.168.77.210/replace", {
         method: "post",
         headers: {
           "Content-Type": "application/json",

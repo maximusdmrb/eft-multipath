@@ -10,6 +10,25 @@ app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
+app.post("/replace", (req, res) => {
+  res.status(200).json(req.body);
+  const input = req.body.src;
+  fs.readdir(input, (err, files) => {
+    files.forEach((file) => {
+      if (file.includes(".21o")) {
+        file = `${input}\\${file}`;
+        fs.readFile(file, (err, data) => {
+          const re = "UNKNOWN EXT NONE",
+            nameAntenna = "ADVNULLANTENNA  ";
+          data = data.toString();
+          data = data.replace(re, nameAntenna);
+          fs.writeFile(file, data, () => console.log("ok"));
+        });
+      }
+    });
+  });
+});
+
 app.post("/post", function (req, res, next) {
   res.status(200).json(req.body);
   const input = req.body.src;
