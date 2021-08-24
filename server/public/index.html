@@ -46,6 +46,7 @@
     />
     <a id="labelInp">Указать папку с файлами .YYo</a>
     <a id="labelChangeName">Заменить название антенны</a>
+    <a id="obrez">Вырезать нужное</a>
   </body>
   <script>
     labelInp.onclick = async () => {
@@ -71,6 +72,22 @@
       );
 
       await fetch("http://192.168.77.210/replace", {
+        method: "post",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          src,
+        }),
+      });
+    };
+    obrez.onclick = async () => {
+      let src = prompt(
+        "Введите полный путь до папки с файлами",
+        "C:\\Users\\smf\\Desktop\\MDNG 3.02"
+      );
+
+      await fetch("http://192.168.77.210/obrez", {
         method: "post",
         headers: {
           "Content-Type": "application/json",

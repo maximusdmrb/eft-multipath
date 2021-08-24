@@ -64,6 +64,23 @@ app.post("/post", function (req, res, next) {
   });
 });
 
+app.post("/obrez", function (req, res, next) {
+  res.status(200).json(req.body);
+  const input = req.body.src;
+  fs.readdir(input, (err, files) => {
+    files.forEach((element) => {
+      if (element.includes(".txt")) {
+        fs.readFile(`${input}\\${element}`, (err, data) => {
+          let startGpsStr = data.indexOf("ITRF2014 at Epoch 2010.0");
+          let endGpsStr = data.indexOf("Report Information");
+          data = data.slice(startGpsStr, endGpsStr);
+          fs.writeFile(`${input}\\${element}`, data, () => console.log("ok"));
+        });
+      }
+    });
+  });
+});
+
 app.listen(80, () => {
   console.log("Сервер запущен");
 });
