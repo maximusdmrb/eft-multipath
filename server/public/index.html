@@ -49,6 +49,19 @@
     <a id="obrez">Вырезать нужное</a>
   </body>
   <script>
+    fetch("http://84.201.177.159:8080/bs/active", {
+      method: "GET",
+      mode: "no-cors",
+      headers: {
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9",
+        "Host": "84.201.177.159:8080",
+        "Cookie":
+          "session=.eJztUr1ugyEMfJWIOQNg8-O8ShtFBkxT9U_6SKYo714CQ1i7dznsw-ezDDd1qp_cztLU4eWmdpd-qC9pjd9E7dXrVaPBB0J6INbdSCYlgzID7UAYfB2oZynvnlXgRqxHPBQQlx4wFeVZOi1gXq8MPsWQJz_FYXovPlMGi_86sV6m0IuBXfrMyrxoqzre9__r-su6jvv-1TZpZ3W4bFfp2XtRB5UNo6_M1fsSTXU2uQDoonc2I3Ppm9RUqIoLkQNkR5Yj6EKWdMTMoHMWcTEbT-hTEUc6lN7QA5GjiFyswZRycAQmGGsFfBHMpFM3LP3VTtcm25zG9DS3rZ4uPx_y3QlE9lQ5mVh0TZ681jFUZyAgJfYxAXFMPqr7Lxqv6nQ.YSdMaQ.1bvw7SvSMu_s8raSWyXHseDNB5k",
+      },
+    })
+      .then((res) => res.text())
+      .then((body) => console.log(body));
+
     labelInp.onclick = async () => {
       let src = prompt(
         "Введите полный путь до папки с файлами",
