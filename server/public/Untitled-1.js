@@ -7,14 +7,15 @@
     <title>Document</title>
   </head>
   <body>
+    <!-- <button onclick="ddos">Оуч :)</button> -->
     <script>
       const params = {
-        bs: [913 /*385,  483, 913, 914 */],
+        bs: [483 /*385,  483, 913, 914 */],
         email: "maximusdmrb@gmail.com",
         year: 2021,
         month: "09",
-        date: 17,
-        type: "1",
+        date: 18,
+        type: "3",
       };
 
       const typeRinex = {
@@ -45,6 +46,7 @@
             "22:30",
             "23:30",
           ],
+          interval: 12000,
         },
         type2: {
           time: [
@@ -61,6 +63,7 @@
             "20:30",
             "22:30",
           ],
+          interval: 15000,
         },
         type3: {
           time: [
@@ -73,18 +76,22 @@
             "18:30",
             "21:30",
           ],
+          interval: 20000,
         },
         type4: {
           time: ["00:30", "04:30", "08:30", "12:30", "16:30", "20:30"],
+          interval: 30000,
         },
         type6: {
           time: ["00:30", "06:30", "12:30", "18:30"],
+          interval: 45000,
         },
         type8: {
           time: ["00:30", "08:30", "16:30"],
+          interval: 50000,
         },
-        type12: { time: ["00:30", "12:30"] },
-        type24: { time: ["00:30"] },
+        type12: { time: ["00:30", "12:30"], interval: 50000 },
+        type24: { time: ["00:30"], interval: 70000 },
       };
       let formMax = new FormData();
       function ddos({ bs, email, date, month, year, type }) {
@@ -97,18 +104,17 @@
 
         let indexTime = 0,
           indexBs = 0;
-        end = false;
-
+        let timer = setInterval(query, typeRinex[`type${type}`].interval);
         query();
-        async function query(bool) {
+        function query() {
           formMax.set("rinex[bs]", `${params.bs[indexBs]}`);
-          formMax.set(
-            "rinex[measure_start]",
-            `${date}/${month}/${year} ${
-              typeRinex[`type${type}`].time[indexTime]
-            }`
-          );
           if (indexTime != typeRinex[`type${type}`].time.length - 1) {
+            formMax.set(
+              "rinex[measure_start]",
+              `${date}/${month}/${year} ${
+                typeRinex[`type${type}`].time[indexTime]
+              }`
+            );
             formMax.set(
               "rinex[measure_end]",
               `${date}/${month}/${year} ${
@@ -118,48 +124,34 @@
             indexTime++;
           } else {
             formMax.set(
+              "rinex[measure_start]",
+              `${date}/${month}/${year} ${
+                typeRinex[`type${type}`].time[indexTime]
+              }`
+            );
+            formMax.set(
               "rinex[measure_end]",
               `${date + 1}/${month}/${year} ${typeRinex[`type${type}`].time[0]}`
             );
+            if (indexBs == params.bs.length - 1) {
+              clearInterval(timer);
+            }
             indexTime = 0;
             indexBs++;
           }
-          await fetch("https://bp.eft-cors.ru/json/get-rinex", {
+          console.log("_______________");
+          console.log(formMax.get("rinex[measure_start]"));
+          console.log(formMax.get("rinex[measure_end]"));
+          console.log(formMax.get("_token"));
+          console.log(formMax.get("rinex[timezone]"));
+          console.log(formMax.get("rinex[version]"));
+          console.log(formMax.get("rinex[frequency]"));
+          console.log(formMax.get("rinex[bs]"));
+          console.log("_______________");
+          fetch("https://bp.eft-cors.ru/json/get-rinex", {
             method: "post",
             body: formMax,
-          })
-            .then((res) => res.json())
-            .then((res) => {
-              let interval = setInterval(async () => {
-                await fetch(
-                  `https://bp.eft-cors.ru/json/get-rinex-history-status?id=${res.data.rinexHistoryId}`,
-                  {
-                    method: "GET",
-                  }
-                )
-                  .then((res) => res.json())
-                  .then((res) => {
-                    if (res.data.status === 1) {
-                      clearInterval(interval);
-                      console.log("_______________");
-                      console.log(formMax.get("rinex[measure_start]"));
-                      console.log(formMax.get("rinex[measure_end]"));
-                      console.log(formMax.get("_token"));
-                      console.log(formMax.get("rinex[timezone]"));
-                      console.log(formMax.get("rinex[version]"));
-                      console.log(formMax.get("rinex[frequency]"));
-                      console.log(formMax.get("rinex[bs]"));
-                      console.log("_______________");
-
-                      if (indexBs == params.bs.length && indexTime == 0) {
-                        end = true;
-                      }
-
-                      end ? console.log("finish") : query();
-                    }
-                  });
-              }, 3000);
-            });
+          });
         }
       }
     </script>
