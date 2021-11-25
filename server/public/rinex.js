@@ -1,10 +1,41 @@
 const list = Array.from(document.querySelector("#rinex-bs").children),
-  favorite = list.filter((item) => item.className === "favorite");
+  // favorite = list.filter((item) => item.className === "favorite");
+  favorite = [
+    /* "41",
+    "896",
+    "173",
+    "175",
+    "176",
+    "705",
+    "709", */
+    "14",
+    "806",
+    "57",
+    "171",
+    "690",
+    "537",
+    "339",
+    "42",
+    "370",
+    "901",
+    "236",
+    "494",
+    "126",
+    "534",
+    "536",
+    "565",
+    "586",
+    "100",
+    "104",
+    "715",
+    "485",
+  ];
 
 document.querySelector(
   "#alert-message"
 ).innerHTML = `Будут обработаны следующие базовые станции, находящиеся в избранных: <br><b><ol>${favorite
-  .map((item) => `<li>${item.text}</li>`)
+  .map((item) => `<li>${item}</li>`)
+  // .map((item) => `<li>${item.text}</li>`)
   .join("")}</ol></b>`;
 document.querySelectorAll(".form-group")[0].remove();
 document.querySelectorAll(".form-group")[0].remove();
@@ -17,19 +48,19 @@ document
   .querySelector(".col-md-12.col-lg-8")
   .insertAdjacentHTML(
     "afterbegin",
-    `<div class="form-group"><label class="col-sm-4 control-label">Продолжительность файлов:</label> <div class="col-sm-8"><label class="radio-inline"><input type="radio" name="rinex[type]" value="1" checked>1ч</label><label class="radio-inline"><input  type="radio" name="rinex[type]" value="2">2ч</label><label class="radio-inline"><input  type="radio" name="rinex[type]" value="3">3ч</label><label class="radio-inline"><input  type="radio" name="rinex[type]" value="4">4ч</label><label class="radio-inline"><input  type="radio" name="rinex[type]" value="6">6ч</label><label class="radio-inline"><input  type="radio" name="rinex[type]" value="8">8ч</label><label class="radio-inline"><input  type="radio" name="rinex[type]" value="12">12ч</label><label class="radio-inline"><input  type="radio" name="rinex[type]" value="24">24ч</label></div></div>`
+    `<div class="form-group"><label class="col-sm-4 control-label">Продолжительность файлов:</label> <div class="col-sm-8"><label class="radio-inline"><input type="radio" name="rinex[type]" value="1" checked>1ч</label><label class="radio-inline"><input  type="radio" name="rinex[type]" value="2">2ч</label><label class="radio-inline"><input  type="radio" name="rinex[type]" value="3">3ч</label><label class="radio-inline"><input  type="radio" name="rinex[type]" value="4">4ч</label><label class="radio-inline"><input  type="radio" name="rinex[type]" value="6">6ч</label><label class="radio-inline"><input  type="radio" name="rinex[type]" value="8">8ч</label><label class="radio-inline"><input  type="radio" name="rinex[type]" value="12">12ч</label><label class="radio-inline"><input  type="radio" name="rinex[type]" value="24" checked="checked">24ч</label></div></div>`
   );
 document
   .querySelector(".col-md-12.col-lg-8")
   .insertAdjacentHTML(
     "afterbegin",
-    `<div class="form-group"><label class="col-sm-4 control-label">Дата:</label> <div class="col-sm-8"><label class="radio-inline"><input  type="date" name="rinex[date]" value="2021-10-05" /></label></div></div>`
+    `<div class="form-group"><label class="col-sm-4 control-label">Дата:</label> <div class="col-sm-8"><label class="radio-inline"><input  type="date" name="rinex[date]" value="2021-10-30" /></label></div></div>`
   );
 document
   .querySelector(".col-md-12.col-lg-8")
   .insertAdjacentHTML(
     "beforeend",
-    `<div class="form-group"><label class="col-sm-4 control-label"></label> <div class="col-sm-8"><label class="radio-inline"><input type="button" value="Запуск" onclick="ddos()" /></label></div></div>`
+    `<div class="form-group"><label class="col-sm-4 control-label"></label> <div class="col-sm-8"><label class="radio-inline"><input type="button" value="Запуск" onclick="ddos()" /><input type="button" value="Запуск" onclick="tableRinex.remove()" /></label></div></div>`
   );
 
 const typeRinex = (type) => {
@@ -82,7 +113,8 @@ function ddos() {
     <tr>
     <td></td>
     ${favorite
-      .map((item) => `<td id="header${item.value}">${item.text}</td>`)
+      // .map((item) => `<td id="header${item.value}">${item.text}</td>`)
+      .map((item) => `<td id="header${item}">${item}</td>`)
       .join("")}
     </tr>
     </table>
@@ -139,12 +171,14 @@ class newRinexQuery {
     let go = new Date(this.start.getTime() + this.i * +this.type * 3600000),
       end = new Date(this.start.getTime() + ++this.i * +this.type * 3600000);
 
-    formMax.set("rinex[bs]", favorite[this.k].value);
+    // formMax.set("rinex[bs]", favorite[this.k].value);
+    formMax.set("rinex[bs]", favorite[this.k]);
     return fetch(
       `https://bp.eft-cors.ru/json/check-rinex-exists?start_date=${formatter(
         go
       )}&end_date=${formatter(end)}&timezone=${"0"}&bs_id=${
-        favorite[this.k].value
+        favorite[this.k]
+        // favorite[this.k].value
       }`,
       {
         method: "GET",
@@ -158,6 +192,8 @@ class newRinexQuery {
             `<td>${formatter(go)}<br />${formatter(end)}</td>`
           );
         let td = document.createElement("td");
+        td.style.cssText =
+          res.success === true ? `color: green;` : `color: red;`;
         td.innerHTML =
           res.success === true ? `Файл обрабатывается...` : `Файл отсутствует`;
         this.tr.insertAdjacentElement("beforeend", td);
@@ -202,6 +238,7 @@ class newRinexQuery {
           let link = document.createElement("a");
           link.href = `rinex/${res.data.result}`;
           link.innerText = `${res.data.result}`;
+          link.click();
           check.td.innerHTML = "";
           check.td.insertAdjacentElement("beforeend", link);
           resolve();
